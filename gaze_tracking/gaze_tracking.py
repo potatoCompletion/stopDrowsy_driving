@@ -1,9 +1,12 @@
 from __future__ import division
+import numpy as np
 import os
-import cv2
+import cv2 
 import dlib
 from .eye import Eye
 from .calibration import Calibration
+from .suspicion import Suspicion
+from .face_id import Face_id
 
 
 class GazeTracking(object):
@@ -18,6 +21,7 @@ class GazeTracking(object):
         self.eye_left = None
         self.eye_right = None
         self.calibration = Calibration()
+        #self.img_path=plt.imread('./images/messigray.png')
 
         # _face_detector is used to detect faces
         self._face_detector = dlib.get_frontal_face_detector()
@@ -99,12 +103,12 @@ class GazeTracking(object):
     def is_right(self):
         """Returns true if the user is looking to the right"""
         if self.pupils_located:
-            return self.horizontal_ratio() <= 0.35
+            return self.horizontal_ratio() <= 0.65
 
     def is_left(self):
         """Returns true if the user is looking to the left"""
         if self.pupils_located:
-            return self.horizontal_ratio() >= 0.65
+            return self.horizontal_ratio() >= 0.75
 
     def is_center(self):
         """Returns true if the user is looking to the center"""
@@ -115,7 +119,7 @@ class GazeTracking(object):
         """Returns true if the user closes his eyes"""
         if self.pupils_located:
             blinking_ratio = (self.eye_left.blinking + self.eye_right.blinking) / 2
-            return blinking_ratio > 3.8
+            return blinking_ratio > 4.0
 
     def annotated_frame(self):
         """Returns the main frame with pupils highlighted"""
@@ -131,3 +135,31 @@ class GazeTracking(object):
             cv2.line(frame, (x_right, y_right - 5), (x_right, y_right + 5), color)
 
         return frame
+
+    def test(self,text,start):
+        S=Suspicion()
+        if S.sleepy_state(text,start):
+            return True
+        else:
+            return False
+
+    def face_id(self,frame):
+        F=Face_id()
+        img1_path=cv2.imread('./images/messigray.png')
+        img1 = cv2.cvtColor(img1_path, cv2.COLOR_BGR2RGB)
+        img1_encoded = F.encode_face(img1)
+
+        img2=frame
+        img2 = cv2.resize(img2, (640, img2.shape[0] * 640 // img2.shape[1]))
+        img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
+        img2_encoded = F.encode_face(img2)
+
+        if len(img2_encoded) == 0:
+            return 0
+
+        dist = np.linalg.norm(img1_encoded - img2_encoded, axis=0)
+
+        print('%s, Distance: %s' % (dist < 0.6, dist))
+        return dist
+  
+        #print('%s, Distance: %s' % (dist < 0.6, dist))
