@@ -1,4 +1,4 @@
-# 프로젝트 이름
+# 나만 바라봐(졸음운전 방지 시스템)
 
 <p align="center">
   <br>
@@ -22,21 +22,17 @@ GIF Images
 
 ## 기술 스택
 
-| JavaScript | TypeScript |  React   |  Node   |
+| Python |  React  |  Node  |
 | :--------: | :--------: | :------: | :-----: |
 |   ![js]    |   ![ts]    | ![react] | ![node] |
 
 <br>
 
-## 구현 기능
+## 필수 조건
 
-### 기능 1
+### 웹캠
 
 ### 기능 2
-
-### 기능 3
-
-### 기능 4
 
 <br>
 
