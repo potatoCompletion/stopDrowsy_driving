@@ -84,7 +84,7 @@ sudo apt-get install vlc
 
 # 라이센스
 
-MIT &copy; [antonilame](mailto:https://github.com/antoinelame)
+MIT &copy; [antoinelame](https://github.com/antoinelame)
 
 <!-- Stack Icon Refernces -->
 
