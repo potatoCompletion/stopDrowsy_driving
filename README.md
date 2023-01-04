@@ -11,7 +11,7 @@
 ## 프로젝트 소개
 
 <p align="justify">
-프로젝트 개요/동기
+아이트래킹(Eye Tracking) 기술을 활용해 사용자의 졸음운전 여부를 판단할 수 있는 프로그램 입니다.
 </p>
 
 <p align="center">
@@ -27,6 +27,8 @@ GIF Images
 |   ![js]    |   ![ts]    | ![react] | ![node] |
 
 <br>
+
+## 동작 방식
 
 ## 필수 조건
 
