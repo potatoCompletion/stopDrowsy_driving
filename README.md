@@ -1,10 +1,5 @@
 # 나만 바라봐 [졸음운전 방지 시스템]
 
-<p align="center">
-  <br>
-  <img src="./images/common/logo-sample.jpeg">
-  <br>
-</p>
 
 # Index  
 
